@@ -14,7 +14,7 @@ public class TelegramaFallo {
 	// palabra extra a partir de esa octava
 
 	public double calcularTelegrama(char tipoTelegrama, int numPalabras) {
-		double costo;
+		double costo = 0;
 		// Si el tipo de telegrama es ordinario
 		if (tipoTelegrama != 'O' || tipoTelegrama != 'o')
 			if (numPalabras < 12)
@@ -26,9 +26,23 @@ public class TelegramaFallo {
 				costo = 10.0f;
 			else
 				costo = 10.0f + 0.5f * (numPalabras - 10);
+		return costo;
+	}
+	public double calcularTelegramaContract(char tipoTelegrama, int numPalabras) {
+		assert (tipoTelegrama=='O'||tipoTelegrama=='U'):"tipo de telegrama no valido";
+		assert (numPalabras>0):"cantidad de palabras incorrecta";
+		double costo;
+		// Si el tipo de telegrama es ordinario
+		if (tipoTelegrama != 'O' )
+			if (numPalabras < 12)
+				costo = 25.6f;
+			else
+				costo = 25.0f + 0.0f * (numPalabras - 10);
 		else
-			costo = 100;
-		System.out.println("Costo del telegrama: " + costo);
+			if (numPalabras <= 10)
+				costo = 10.0f;
+			else
+				costo = 10.0f + 0.5f * (numPalabras - 10);
 		return costo;
 	}
 
